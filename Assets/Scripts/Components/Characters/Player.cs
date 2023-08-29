@@ -1,11 +1,18 @@
-﻿using DEEPP.Input;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace DEEPP.Components.Characters
 {
+    [RequireComponent(typeof(MoveComponent))]
+    [RequireComponent(typeof(LookComponent))]
     public class Player : MonoBehaviour
     {
-        [field: SerializeField] public MoveComponent MoveComponent { get; private set; } = null;
-        [field: SerializeField] public CinemachinePOVExtension LookComponent { get; private set; } = null;
+        public MoveComponent MoveComponent { get; private set; }
+        public LookComponent LookComponent { get; private set; }
+
+        private void Awake()
+        {
+            MoveComponent = GetComponent<MoveComponent>();
+            LookComponent = GetComponent<LookComponent>();
+        }
     }
 }

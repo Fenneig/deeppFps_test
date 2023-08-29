@@ -101,8 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b4ba7711d613944c96fbb244566d237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _horizontalSensitivity: 10
-  _verticalSensitivity: 10
+  _lookComponent: {fileID: 4816000033104743506}
   _clampAngle: 80
 --- !u!1 &699745622334519650
 GameObject:
@@ -203,6 +202,7 @@ GameObject:
   - component: {fileID: 1617887265204267583}
   - component: {fileID: 2970385741345187884}
   - component: {fileID: 6630483084024652432}
+  - component: {fileID: 4816000033104743506}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <MoveComponent>k__BackingField: {fileID: 6630483084024652432}
-  <LookComponent>k__BackingField: {fileID: 3353863994993397406}
+  <LookComponent>k__BackingField: {fileID: 4816000033104743506}
 --- !u!114 &1617887265204267583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,6 +420,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 8
+--- !u!114 &4816000033104743506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3836961836839507516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cbfc40c6f974a9f8d5f3426b7fab4d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <HorizontalSensitivity>k__BackingField: 10
+  <VerticalSensitivity>k__BackingField: 10
 --- !u!1 &7915158999788491339
 GameObject:
   m_ObjectHideFlags: 0
