@@ -13,6 +13,7 @@ namespace DEEPP.Input
         private void Awake()
         {
             _player = GetComponent<Player>();
+            Cursor.visible = false;
         }
 
         [UsedImplicitly]
@@ -24,7 +25,7 @@ namespace DEEPP.Input
         [UsedImplicitly]
         public void OnShoot(InputAction.CallbackContext context)
         {
-            if (context.started) Debug.Log("Shoot");
+            if (context.started) _player.GunComponent.Shoot();
         }
 
         [UsedImplicitly]

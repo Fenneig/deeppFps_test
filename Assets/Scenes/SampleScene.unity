@@ -228,17 +228,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &433627024 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7973029393136972043, guid: 150cc97f763d9c641b8fa422e2991659, type: 3}
-  m_PrefabInstance: {fileID: 439862069116327968}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &517931155
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,7 +322,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 80
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -360,7 +349,7 @@ Transform:
   m_GameObject: {fileID: 517931155}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0.45}
+  m_LocalPosition: {x: 0, y: 2.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -994,45 +983,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1099832990005195671, guid: 150cc97f763d9c641b8fa422e2991659, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1099832990005195671, guid: 150cc97f763d9c641b8fa422e2991659, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1099832990005195671, guid: 150cc97f763d9c641b8fa422e2991659, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1099832990005195671, guid: 150cc97f763d9c641b8fa422e2991659, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1099832990005195671, guid: 150cc97f763d9c641b8fa422e2991659, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1099832990005195671, guid: 150cc97f763d9c641b8fa422e2991659, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 2250820879357224585, guid: 150cc97f763d9c641b8fa422e2991659, type: 3}
+      propertyPath: _impactEffect
+      value: 
+      objectReference: {fileID: 3323253375388386169, guid: 2acc9f64996300c4d9781d6dffc6fb2b, type: 3}
     - target: {fileID: 3836961836839507516, guid: 150cc97f763d9c641b8fa422e2991659, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816000033104743506, guid: 150cc97f763d9c641b8fa422e2991659, type: 3}
-      propertyPath: _camera
-      value: 
-      objectReference: {fileID: 433627024}
-    - target: {fileID: 4816000033104743506, guid: 150cc97f763d9c641b8fa422e2991659, type: 3}
-      propertyPath: _sensitivity
-      value: 11.78
-      objectReference: {fileID: 0}
-    - target: {fileID: 4816000033104743506, guid: 150cc97f763d9c641b8fa422e2991659, type: 3}
-      propertyPath: _verticalClamp
-      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 8567075477285536485, guid: 150cc97f763d9c641b8fa422e2991659, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1040,7 +997,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8567075477285536485, guid: 150cc97f763d9c641b8fa422e2991659, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 1.33
       objectReference: {fileID: 0}
     - target: {fileID: 8567075477285536485, guid: 150cc97f763d9c641b8fa422e2991659, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1074,8 +1031,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2175287964430524532, guid: 150cc97f763d9c641b8fa422e2991659, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
