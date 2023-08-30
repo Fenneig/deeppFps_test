@@ -11,7 +11,6 @@ namespace DEEPP.Components.Characters
         private Vector3 _moveDirection;
         private Vector3 _velocity;
         private bool _isGrounded;
-        private Transform _cameraTransform;
 
         private const float GRAVITY_SCALE = 9.81f;
         private const float ON_GROUND_VELOCITY = -2f;
@@ -25,23 +24,21 @@ namespace DEEPP.Components.Characters
         private void Awake()
         {
             _characterController = GetComponent<CharacterController>();
-            _cameraTransform = Camera.main.transform;
         }
 
         private void Update()
         {
             _isGrounded = _characterController.isGrounded;
 
-            HorizontalMovement();
-            
             VerticalMovement();
+            HorizontalMovement();
         }
-
+        
         private void HorizontalMovement()
         {
-            var fixedMoveDirection = _cameraTransform.forward * _moveDirection.z + _cameraTransform.right * _moveDirection.x;
-            
-            _characterController.Move(transform.TransformDirection(fixedMoveDirection) * _speed * Time.deltaTime);
+            Vector3 fixedMoveDirection = transform.right * _moveDirection.x + transform.forward * _moveDirection.z;
+            fixedMoveDirection.Normalize();
+            _characterController.Move(fixedMoveDirection * _speed * Time.deltaTime);
         }
 
         private void VerticalMovement()
