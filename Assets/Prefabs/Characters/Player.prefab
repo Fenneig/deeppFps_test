@@ -172,6 +172,7 @@ GameObject:
   - component: {fileID: 6630483084024652432}
   - component: {fileID: 4816000033104743506}
   - component: {fileID: 2250820879357224585}
+  - component: {fileID: 8370062868261394950}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -366,7 +367,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _muzzleFireParticle: {fileID: 3413541301677710075}
-  _damageAmount: 20
+  _impactEffect: {fileID: 3323253375388386169, guid: 2acc9f64996300c4d9781d6dffc6fb2b, type: 3}
+--- !u!114 &8370062868261394950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3836961836839507516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3c0fcf3301484fa52fddce47b03dd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHP: 100
 --- !u!1 &7577546182499022532
 GameObject:
   m_ObjectHideFlags: 0
