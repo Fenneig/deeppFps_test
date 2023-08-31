@@ -1,5 +1,6 @@
 using DEEPP.Components.Characters;
 using JetBrains.Annotations;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,7 +14,6 @@ namespace DEEPP.Input
         private void Awake()
         {
             _player = GetComponent<Player>();
-            Cursor.visible = false;
         }
 
         [UsedImplicitly]
@@ -25,13 +25,30 @@ namespace DEEPP.Input
         [UsedImplicitly]
         public void OnShoot(InputAction.CallbackContext context)
         {
-            if (context.started) _player.GunComponent.Shoot();
+            if (context.started) _player.ShootComponent.StartShoot();
+            if (context.canceled) _player.ShootComponent.StopShoot();
         }
 
         [UsedImplicitly]
         public void OnLook(InputAction.CallbackContext context)
         {
             _player.LookComponent.MouseDelta = context.ReadValue<Vector2>();
+        }
+
+        [UsedImplicitly]
+        public void OnReload(InputAction.CallbackContext context)
+        {
+            _player.WeaponComponent.Reload();
+        }
+
+        [UsedImplicitly]
+        public void OnExit(InputAction.CallbackContext context)
+        {
+#if UNITY_EDITOR
+            EditorApplication.ExitPlaymode();
+#else
+            Application.Quit();
+#endif
         }
     }
 }
