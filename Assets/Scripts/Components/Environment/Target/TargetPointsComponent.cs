@@ -7,7 +7,8 @@ namespace DEEPP.Components.Environment.Target
     {
         [SerializeField] private TargetComponent _targetComponent;
         [SerializeField] private int _score;
-        public void Damage()
+        
+        public void Hit()
         {
             _targetComponent.ShowScore(_score);
         }
