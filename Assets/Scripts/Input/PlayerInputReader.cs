@@ -1,5 +1,6 @@
 using DEEPP.Components.Characters;
 using JetBrains.Annotations;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,7 +14,6 @@ namespace DEEPP.Input
         private void Awake()
         {
             _player = GetComponent<Player>();
-            Cursor.visible = false;
         }
 
         [UsedImplicitly]
@@ -39,6 +39,16 @@ namespace DEEPP.Input
         public void OnReload(InputAction.CallbackContext context)
         {
             _player.WeaponComponent.Reload();
+        }
+
+        [UsedImplicitly]
+        public void OnExit(InputAction.CallbackContext context)
+        {
+#if UNITY_EDITOR
+            EditorApplication.ExitPlaymode();
+#else
+            Application.Quit();
+#endif
         }
     }
 }

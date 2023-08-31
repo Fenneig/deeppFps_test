@@ -22,6 +22,8 @@ namespace DEEPP.HUD
 
             GameSession.Instance.Player.WeaponComponent.CurrentMagazineAmmo.OnChanged += UpdateCurrentAmmo;
             GameSession.Instance.Player.WeaponComponent.ReserveAmmo.OnChanged += UpdateReserveAmmo;
+            UpdateCurrentAmmo(GameSession.Instance.Player.WeaponComponent.CurrentMagazineAmmo.Value, 0);
+            UpdateReserveAmmo(GameSession.Instance.Player.WeaponComponent.ReserveAmmo.Value, 0);
         }
 
         private void Update()

@@ -27,7 +27,7 @@ namespace DEEPP.Components.Characters
         private void Awake()
         {
             EquipWeapon();
-            LoadMagazine();
+            Reload();
         }
 
         private void LoadMagazine()
@@ -66,7 +66,7 @@ namespace DEEPP.Components.Characters
 
         public void Reload()
         {
-            if (_reserveAmmo.Value <= 0) return;
+            if (_reserveAmmo.Value <= 0 || _currentMagazineAmmo.Value == _currentWeapon.MagazineCapacity) return;
             //TODO: set animation to animator
             _isReloading = true;
             _currentWeapon.ReloadTime.Reset();

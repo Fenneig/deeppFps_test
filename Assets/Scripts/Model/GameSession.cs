@@ -13,11 +13,18 @@ namespace DEEPP.Model
         {
             Instance ??= this;
             LoadHUD();
+            SetCursorSettings();
         }
 
         private void LoadHUD()
         {
             SceneManager.LoadSceneAsync("HUD", LoadSceneMode.Additive);
+        }
+
+        private void SetCursorSettings()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
 }

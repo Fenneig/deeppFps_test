@@ -338,6 +338,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: ddf58b89-033e-480d-9cf2-0196177f5b34
     m_ActionName: Ground/Reload[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1617887265204267583}
+        m_TargetAssemblyTypeName: DEEPP.Input.PlayerInputReader, Assembly-CSharp
+        m_MethodName: OnExit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 48f0747d-3660-49d3-bd37-ad29ba3e33a6
+    m_ActionName: Ground/Exit[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Ground
@@ -412,7 +428,7 @@ MonoBehaviour:
   _currentWeapon: {fileID: 11400000, guid: 0c9d4ad8fba616845b81078c222926aa, type: 2}
   _weaponSlot: {fileID: 758082842619003547}
   _reserveAmmo:
-    _value: 120
+    _value: 150
 --- !u!1 &4884887019872550910
 GameObject:
   m_ObjectHideFlags: 0
