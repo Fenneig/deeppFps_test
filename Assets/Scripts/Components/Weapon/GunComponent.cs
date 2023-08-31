@@ -23,7 +23,7 @@ namespace DEEPP.Components.Weapon
             var impactEffect = Instantiate(_impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
             Destroy(impactEffect, IMPACT_EFFECT_LIFE_TIME);
             if (!hit.transform.TryGetComponent(out IDamageable damageable)) return;
-            damageable.Hit();
+            damageable.Hit(this, 0);
         }
 
         private void DoEffects()

@@ -2,6 +2,6 @@
 {
     public interface IDamageable
     {
-        void Hit();
+        void Hit(object sender, int value);
     }
 }
