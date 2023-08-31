@@ -25,13 +25,20 @@ namespace DEEPP.Input
         [UsedImplicitly]
         public void OnShoot(InputAction.CallbackContext context)
         {
-            if (context.started) _player.GunComponent.Shoot();
+            if (context.started) _player.ShootComponent.StartShoot();
+            if (context.canceled) _player.ShootComponent.StopShoot();
         }
 
         [UsedImplicitly]
         public void OnLook(InputAction.CallbackContext context)
         {
             _player.LookComponent.MouseDelta = context.ReadValue<Vector2>();
+        }
+
+        [UsedImplicitly]
+        public void OnReload(InputAction.CallbackContext context)
+        {
+            _player.WeaponComponent.Reload();
         }
     }
 }

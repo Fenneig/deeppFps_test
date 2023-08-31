@@ -15,11 +15,11 @@ namespace DEEPP.HUD
         private void Start()
         {
             _maxHealth = GameSession.Instance.Player.HealthComponent.MaxHP;
-            GameSession.Instance.Player.HealthComponent.HP.OnChanged += SetHealth;
-            SetHealth(_maxHealth, 0);
+            GameSession.Instance.Player.HealthComponent.HP.OnChanged += UpdateHealth;
+            UpdateHealth(_maxHealth, 0);
         }
 
-        private void SetHealth(int newValue, int _)
+        private void UpdateHealth(int newValue, int _)
         {
             _healthValueText.text = newValue.ToString();
             _healthValueImage.fillAmount = (float) newValue / _maxHealth;
@@ -27,7 +27,7 @@ namespace DEEPP.HUD
 
         private void OnDestroy()
         {
-            GameSession.Instance.Player.HealthComponent.HP.OnChanged -= SetHealth;
+            GameSession.Instance.Player.HealthComponent.HP.OnChanged -= UpdateHealth;
         }
     }
 }
