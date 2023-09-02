@@ -1,4 +1,4 @@
-﻿using DEEPP.Model;
+﻿using DEEPP.Model.Data.Properties;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,25 +9,24 @@ namespace DEEPP.HUD
     {
         [SerializeField] private Image _healthValueImage;
         [SerializeField] private TextMeshProUGUI _healthValueText;
-
-        private int _maxHealth;
-
+        [SerializeField] private IntProperty _hp;
+        [SerializeField] private IntProperty _maxHp;
+        
         private void Start()
         {
-            _maxHealth = GameSession.Instance.Player.HealthComponent.MaxHP;
-            GameSession.Instance.Player.HealthComponent.HP.OnChanged += UpdateHealth;
-            UpdateHealth(_maxHealth, 0);
+            _hp.OnChanged += UpdateHealth;
+            UpdateHealth(_maxHp.Value, 0);
         }
 
         private void UpdateHealth(int newValue, int _)
         {
             _healthValueText.text = newValue.ToString();
-            _healthValueImage.fillAmount = (float) newValue / _maxHealth;
+            _healthValueImage.fillAmount = (float) newValue / _maxHp.Value;
         }
 
         private void OnDestroy()
         {
-            GameSession.Instance.Player.HealthComponent.HP.OnChanged -= UpdateHealth;
+            _hp.OnChanged -= UpdateHealth;
         }
     }
 }

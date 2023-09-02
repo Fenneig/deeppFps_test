@@ -5,23 +5,21 @@ namespace DEEPP.Components.Characters
 {
     public class HealthComponent : MonoBehaviour
     {
-        [SerializeField] private int _maxHP;
-        public IntProperty HP { get; private set; }
-        public int MaxHP => _maxHP;
+        [SerializeField] private IntProperty _hp;
+        [SerializeField] private IntProperty _maxHP;
         
         public void Start()
         {
-            HP = new IntProperty();
-            HP.Value = _maxHP;
+            _hp.Value = _maxHP.Value;
         }
 
         public void ModifyHealthByDelta(int delta)
         {
-            if (HP.Value <= 0) return;
+            if (_hp.Value <= 0) return;
 
-            if (HP.Value + delta >= _maxHP) delta = _maxHP - HP.Value;
+            if (_hp.Value + delta >= _maxHP.Value) delta = _maxHP.Value - _hp.Value;
 
-            HP.Value += delta;
+            _hp.Value += delta;
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using DEEPP.Assets;
 using DEEPP.Components.Weapon;
 using DEEPP.Model.Data.Properties;
 using UnityEngine;
@@ -8,20 +7,18 @@ namespace DEEPP.Components.Characters
 {
     public class WeaponComponent : MonoBehaviour
     {
-        [SerializeField] private WeaponInfo _currentWeapon;
+        [Header("GameObject references")]
         [SerializeField] private Transform _weaponSlot;
+        [Space, Header("SO References")]
+        [SerializeField] private CurrentWeaponProperty _currentWeapon;
+        [SerializeField] private IntProperty _currentMagazineAmmo;
         [SerializeField] private IntProperty _reserveAmmo;
-
+        [SerializeField] private IntProperty _maxReserveAmmo;
+        
         private GunModelComponent _currentWeaponModel;
-        private IntProperty _currentMagazineAmmo = new ();
-        private bool _isReloading;
-
-        public WeaponInfo CurrentWeapon => _currentWeapon;
+        public CurrentWeaponProperty CurrentWeapon => _currentWeapon;
         public GunModelComponent CurrentWeaponModel => _currentWeaponModel;
         public IntProperty CurrentMagazineAmmo => _currentMagazineAmmo;
-        public IntProperty ReserveAmmo => _reserveAmmo;
-        public bool IsReloading => _isReloading;
-
         public event Action OnWeaponChanged;
         
         private void Awake()
@@ -30,14 +27,19 @@ namespace DEEPP.Components.Characters
             Reload();
         }
 
+        private void OnEnable()
+        {
+            _reserveAmmo.Value = _maxReserveAmmo.Value;
+        }
+
         private void LoadMagazine()
         {
             if (_reserveAmmo.Value <= 0) return;
             
-            if (_currentMagazineAmmo.Value + _reserveAmmo.Value >= _currentWeapon.MagazineCapacity)
+            if (_currentMagazineAmmo.Value + _reserveAmmo.Value >= _currentWeapon.Value.MagazineCapacity)
             {
-                _reserveAmmo.Value -= _currentWeapon.MagazineCapacity - _currentMagazineAmmo.Value;
-                _currentMagazineAmmo.Value = _currentWeapon.MagazineCapacity;
+                _reserveAmmo.Value -= _currentWeapon.Value.MagazineCapacity - _currentMagazineAmmo.Value;
+                _currentMagazineAmmo.Value = _currentWeapon.Value.MagazineCapacity;
             }
             else
             {
@@ -45,12 +47,12 @@ namespace DEEPP.Components.Characters
                 _reserveAmmo.Value = 0;
             }
 
-            _isReloading = false;
+            _currentWeapon.IsReloading = false;
         }
 
         private void EquipWeapon()
         {
-            _currentWeaponModel = Instantiate(_currentWeapon.ModelPrefab.gameObject, _weaponSlot)
+            _currentWeaponModel = Instantiate(_currentWeapon.Value.ModelPrefab.gameObject, _weaponSlot)
                 .GetComponent<GunModelComponent>();
             
             OnWeaponChanged?.Invoke();
@@ -58,7 +60,7 @@ namespace DEEPP.Components.Characters
 
         private void Update()
         {
-            if (_isReloading && _currentWeapon.ReloadTime.IsReady)
+            if (_currentWeapon.IsReloading && _currentWeapon.Value.ReloadTime.IsReady)
             {
                 LoadMagazine();
             }
@@ -66,15 +68,15 @@ namespace DEEPP.Components.Characters
 
         public void Reload()
         {
-            if (_reserveAmmo.Value <= 0 || _currentMagazineAmmo.Value == _currentWeapon.MagazineCapacity) return;
+            if (_reserveAmmo.Value <= 0 || _currentMagazineAmmo.Value == _currentWeapon.Value.MagazineCapacity) return;
             //TODO: set animation to animator
-            _isReloading = true;
-            _currentWeapon.ReloadTime.Reset();
+            _currentWeapon.IsReloading = true;
+            _currentWeapon.Value.ReloadTime.Reset();
         }
 
         public void CheckIsNeedToReload()
         {
-            if (!_currentWeapon.ReloadTime.IsReady) return;
+            if (!_currentWeapon.Value.ReloadTime.IsReady) return;
             if (_currentMagazineAmmo.Value <= 0) Reload();
         }
     }

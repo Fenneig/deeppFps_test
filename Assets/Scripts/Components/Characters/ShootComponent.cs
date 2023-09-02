@@ -8,7 +8,7 @@ namespace DEEPP.Components.Characters
     {
         [SerializeField] private GameObject _impactEffect;
         private Camera _camera;
-        private WeaponComponent _weapon;
+        private WeaponComponent _weaponComponent;
         private Timer _shootsPerSecondTimer = new();
         private bool _isShooting;
 
@@ -27,15 +27,15 @@ namespace DEEPP.Components.Characters
 
         public void Init(WeaponComponent weapon)
         {
-            _weapon = weapon;
-            _weapon.OnWeaponChanged += UpdateValues;
+            _weaponComponent = weapon;
+            _weaponComponent.OnWeaponChanged += UpdateValues;
             
             UpdateValues();
         }
 
         private void UpdateValues()
         {
-            _shootsPerSecondTimer.Value = SECONDS_IN_MINUTE / _weapon.CurrentWeapon.BulletsPerMinute;
+            _shootsPerSecondTimer.Value = SECONDS_IN_MINUTE / _weaponComponent.CurrentWeapon.Value.BulletsPerMinute;
         }
 
         public void StartShoot()
@@ -45,19 +45,19 @@ namespace DEEPP.Components.Characters
 
         public void StopShoot()
         {
-            _weapon.CheckIsNeedToReload();
+            _weaponComponent.CheckIsNeedToReload();
             _isShooting = false;
         }
 
         private void Shoot()
         {
             if (!CheckShootPossibility()) return;
-            _weapon.CurrentMagazineAmmo.Value--;
+            _weaponComponent.CurrentMagazineAmmo.Value--;
             
             DoEffects();
             _shootsPerSecondTimer.Reset();
 
-            if (!_weapon.CurrentWeapon.IsAutomaticFire)
+            if (!_weaponComponent.CurrentWeapon.Value.IsAutomaticFire)
             {
                 StopShoot();
             }
@@ -67,12 +67,12 @@ namespace DEEPP.Components.Characters
 
         private bool CheckShootPossibility()
         {
-            if (_weapon.IsReloading)
+            if (_weaponComponent.CurrentWeapon.IsReloading)
             {
                 return false;
             }
             
-            if (_weapon.CurrentMagazineAmmo.Value <= 0)
+            if (_weaponComponent.CurrentMagazineAmmo.Value <= 0)
             {
                 DoEmptyEffects();
                 return false;
@@ -99,7 +99,7 @@ namespace DEEPP.Components.Characters
 
         private void DoEffects()
         {
-            _weapon.CurrentWeaponModel.MuzzleFireParticle.Play();
+            _weaponComponent.CurrentWeaponModel.MuzzleFireParticle.Play();
         }
     }
 }

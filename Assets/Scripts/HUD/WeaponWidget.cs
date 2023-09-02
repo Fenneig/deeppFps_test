@@ -1,4 +1,4 @@
-﻿using DEEPP.Model;
+﻿using DEEPP.Model.Data.Properties;
 using DEEPP.Utils;
 using TMPro;
 using UnityEngine;
@@ -8,44 +8,49 @@ namespace DEEPP.HUD
 {
     public class WeaponWidget : MonoBehaviour
     {
+        [Header("UI references")]
         [SerializeField] private Image _weaponImage;
-        [SerializeField] private TextMeshProUGUI _currentAmmo;
-        [SerializeField] private TextMeshProUGUI _reserveAmmo;
+        [SerializeField] private TextMeshProUGUI _currentAmmoText;
+        [SerializeField] private TextMeshProUGUI _reserveAmmoText;
+        [Space, Header("SO references")]
+        [SerializeField] private IntProperty _currentAmmo;
+        [SerializeField] private IntProperty _reserveAmmo;
+        [SerializeField] private CurrentWeaponProperty _weapon;
 
         private Timer _reloadTime;
         
         private void Start()
         {
-            var weapon = GameSession.Instance.Player.WeaponComponent;
-            _weaponImage.sprite = weapon.CurrentWeapon.Sprite;
-            _reloadTime = GameSession.Instance.Player.WeaponComponent.CurrentWeapon.ReloadTime;
+            _weaponImage.sprite = _weapon.Value.Sprite;
+            _reloadTime = _weapon.Value.ReloadTime;
 
-            GameSession.Instance.Player.WeaponComponent.CurrentMagazineAmmo.OnChanged += UpdateCurrentAmmo;
-            GameSession.Instance.Player.WeaponComponent.ReserveAmmo.OnChanged += UpdateReserveAmmo;
-            UpdateCurrentAmmo(GameSession.Instance.Player.WeaponComponent.CurrentMagazineAmmo.Value, 0);
-            UpdateReserveAmmo(GameSession.Instance.Player.WeaponComponent.ReserveAmmo.Value, 0);
+            _currentAmmo.OnChanged += UpdateCurrentAmmo;
+            _reserveAmmo.OnChanged += UpdateReserveAmmo;
+            
+            UpdateCurrentAmmo(_currentAmmo.Value, 0);
+            UpdateReserveAmmo(_reserveAmmo.Value, 0);
         }
 
         private void Update()
         {
-            if (!GameSession.Instance.Player.WeaponComponent.IsReloading) return;
+            if (!_weapon.IsReloading) return;
             _weaponImage.fillAmount = 1 - _reloadTime.RemainingTime / _reloadTime.Value;
         }
 
         private void UpdateCurrentAmmo(int newValue, int _)
         {
-            _currentAmmo.text = newValue.ToString();
+            _currentAmmoText.text = newValue.ToString();
         }
         
         private void UpdateReserveAmmo(int newValue, int _)
         {
-            _reserveAmmo.text = newValue.ToString();
+            _reserveAmmoText.text = newValue.ToString();
         }
 
         private void OnDestroy()
         {
-            GameSession.Instance.Player.WeaponComponent.CurrentMagazineAmmo.OnChanged -= UpdateCurrentAmmo;
-            GameSession.Instance.Player.WeaponComponent.ReserveAmmo.OnChanged -= UpdateReserveAmmo;
+            _currentAmmo.OnChanged -= UpdateCurrentAmmo;
+            _reserveAmmo.OnChanged -= UpdateReserveAmmo;
         }
     }
 }

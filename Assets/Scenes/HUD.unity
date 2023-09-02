@@ -317,6 +317,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthValueImage: {fileID: 1745790410}
   _healthValueText: {fileID: 405321340}
+  _hp: {fileID: 11400000, guid: 94b2ad29e678caa44937c6a20c2c7fcf, type: 2}
+  _maxHp: {fileID: 11400000, guid: 16506492cb8f02a4298ee4f860ab7a13, type: 2}
 --- !u!1 &300746042
 GameObject:
   m_ObjectHideFlags: 0
@@ -1093,8 +1095,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponImage: {fileID: 79147206}
-  _currentAmmo: {fileID: 666392631}
-  _reserveAmmo: {fileID: 300746044}
+  _currentAmmoText: {fileID: 666392631}
+  _reserveAmmoText: {fileID: 300746044}
+  _currentAmmo: {fileID: 11400000, guid: a6badb31fa783fb4b9ce31aaf953d296, type: 2}
+  _reserveAmmo: {fileID: 11400000, guid: 3d0f185aedd476848945045974e7fd9a, type: 2}
+  _weapon: {fileID: 11400000, guid: c6bf370a41a888447b1590492321ee79, type: 2}
 --- !u!1 &1745790408
 GameObject:
   m_ObjectHideFlags: 0

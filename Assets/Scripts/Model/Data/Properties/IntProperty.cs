@@ -1,7 +1,7 @@
-﻿using System;
+﻿using UnityEngine;
 
 namespace DEEPP.Model.Data.Properties
 {
-    [Serializable]
-    public class IntProperty : ObservableProperty<int> { }
+    [CreateAssetMenu]
+    public class IntProperty : ScriptableProperty<int> { }
 }
