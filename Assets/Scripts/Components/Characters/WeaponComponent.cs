@@ -21,14 +21,22 @@ namespace DEEPP.Components.Characters
         public IntProperty CurrentMagazineAmmo => _currentMagazineAmmo;
         public event Action OnWeaponChanged;
         
-        private void Awake()
+        
+        private void OnEnable()
+        {
+            InitWeaponStats();
+        }
+
+        private void InitWeaponStats()
         {
             EquipWeapon();
+            SetMagazineStartValues();
             Reload();
         }
 
-        private void OnEnable()
+        private void SetMagazineStartValues()
         {
+            _currentMagazineAmmo.Value = 0;
             _reserveAmmo.Value = _maxReserveAmmo.Value;
         }
 

@@ -2,10 +2,12 @@
 
 namespace DEEPP.Model.Data.Properties
 {
-    public class ScriptableProperty<TPropertyType> : ScriptableObject, IObservableProperty<TPropertyType>
+    public class ObservableProperty<TPropertyType> : ScriptableObject
     {
         [SerializeField] private TPropertyType _value;
-        public event IObservableProperty<TPropertyType>.OnPropertyChanged OnChanged;
+        
+        public delegate void OnPropertyChanged(TPropertyType newValue, TPropertyType oldValue);
+        public event OnPropertyChanged OnChanged;
 
         public TPropertyType Value
         {
@@ -16,8 +18,13 @@ namespace DEEPP.Model.Data.Properties
                 if (isSame) return;
                 var oldValue = _value;
                 _value = value;
-                OnChanged?.Invoke(_value, oldValue);
+                InvokeChangedEvent(_value, oldValue);
             }
+        }
+
+        protected void InvokeChangedEvent(TPropertyType newValue, TPropertyType oldValue)
+        {
+            OnChanged?.Invoke(newValue, oldValue);
         }
     }
 }

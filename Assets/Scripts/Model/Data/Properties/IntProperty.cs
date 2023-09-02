@@ -3,5 +3,5 @@
 namespace DEEPP.Model.Data.Properties
 {
     [CreateAssetMenu]
-    public class IntProperty : ScriptableProperty<int> { }
+    public class IntProperty : ObservableProperty<int> { }
 }
