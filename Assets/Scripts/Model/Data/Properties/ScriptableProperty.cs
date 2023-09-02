@@ -18,8 +18,13 @@ namespace DEEPP.Model.Data.Properties
                 if (isSame) return;
                 var oldValue = _value;
                 _value = value;
-                InvokeChangedEvent(_value, oldValue);
+                OnChanged?.Invoke(_value, oldValue);
             }
+        }
+
+        private void OnValidate()
+        {
+            InvokeChangedEvent(_value, _value);
         }
 
         protected void InvokeChangedEvent(TPropertyType newValue, TPropertyType oldValue)
