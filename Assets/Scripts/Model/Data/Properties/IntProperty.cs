@@ -2,6 +2,6 @@
 
 namespace DEEPP.Model.Data.Properties
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(fileName = "Int property", menuName = "Properties/IntProperty")]
     public class IntProperty : ObservableProperty<int> { }
 }
