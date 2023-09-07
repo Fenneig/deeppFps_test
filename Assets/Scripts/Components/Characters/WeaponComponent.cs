@@ -1,6 +1,6 @@
-﻿using System;
-using DEEPP.Components.Weapon;
-using DEEPP.Model.Data.Properties;
+﻿using DEEPP.Components.Weapon;
+using DEEPP.Model.Data.Events;
+using DEEPP.Model.Data.ScriptableProperties;
 using UnityEngine;
 
 namespace DEEPP.Components.Characters
@@ -10,16 +10,16 @@ namespace DEEPP.Components.Characters
         [Header("GameObject references")]
         [SerializeField] private Transform _weaponSlot;
         [Space, Header("SO References")]
-        [SerializeField] private CurrentWeaponProperty _currentWeapon;
-        [SerializeField] private IntProperty _currentMagazineAmmo;
-        [SerializeField] private IntProperty _reserveAmmo;
-        [SerializeField] private IntProperty _maxReserveAmmo;
+        [SerializeField] private CurrentWeaponVariable _currentWeapon;
+        [SerializeField] private IntVariable _currentMagazineAmmo;
+        [SerializeField] private IntVariable _reserveAmmo;
+        [SerializeField] private IntReference _maxReserveAmmo;
+        [SerializeField] private GameEvent _reloadEvent;
         
         private GunModelComponent _currentWeaponModel;
-        public CurrentWeaponProperty CurrentWeapon => _currentWeapon;
+        public CurrentWeaponVariable CurrentWeapon => _currentWeapon;
         public GunModelComponent CurrentWeaponModel => _currentWeaponModel;
-        public IntProperty CurrentMagazineAmmo => _currentMagazineAmmo;
-        public event Action OnWeaponChanged;
+        public IntVariable CurrentMagazineAmmo => _currentMagazineAmmo;
         
         
         private void OnEnable()
@@ -54,7 +54,8 @@ namespace DEEPP.Components.Characters
                 _currentMagazineAmmo.Value += _reserveAmmo.Value;
                 _reserveAmmo.Value = 0;
             }
-
+            
+            _reloadEvent.Raise();
             _currentWeapon.IsReloading = false;
         }
 
@@ -62,8 +63,6 @@ namespace DEEPP.Components.Characters
         {
             _currentWeaponModel = Instantiate(_currentWeapon.Value.ModelPrefab.gameObject, _weaponSlot)
                 .GetComponent<GunModelComponent>();
-            
-            OnWeaponChanged?.Invoke();
         }
 
         private void Update()

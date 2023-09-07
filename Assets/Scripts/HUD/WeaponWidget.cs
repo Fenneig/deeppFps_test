@@ -1,4 +1,4 @@
-﻿using DEEPP.Model.Data.Properties;
+﻿using DEEPP.Model.Data.ScriptableProperties;
 using DEEPP.Utils;
 using TMPro;
 using UnityEngine;
@@ -13,9 +13,9 @@ namespace DEEPP.HUD
         [SerializeField] private TextMeshProUGUI _currentAmmoText;
         [SerializeField] private TextMeshProUGUI _reserveAmmoText;
         [Space, Header("SO references")]
-        [SerializeField] private IntProperty _currentAmmo;
-        [SerializeField] private IntProperty _reserveAmmo;
-        [SerializeField] private CurrentWeaponProperty _weapon;
+        [SerializeField] private IntVariable _currentAmmo;
+        [SerializeField] private IntVariable _reserveAmmo;
+        [SerializeField] private CurrentWeaponVariable _weapon;
 
         private Timer _reloadTime;
         
@@ -23,12 +23,6 @@ namespace DEEPP.HUD
         {
             _weaponImage.sprite = _weapon.Value.Sprite;
             _reloadTime = _weapon.Value.ReloadTime;
-
-            _currentAmmo.OnChanged += UpdateCurrentAmmo;
-            _reserveAmmo.OnChanged += UpdateReserveAmmo;
-            
-            UpdateCurrentAmmo(_currentAmmo.Value, 0);
-            UpdateReserveAmmo(_reserveAmmo.Value, 0);
         }
 
         private void Update()
@@ -37,20 +31,14 @@ namespace DEEPP.HUD
             _weaponImage.fillAmount = 1 - _reloadTime.RemainingTime / _reloadTime.Value;
         }
 
-        private void UpdateCurrentAmmo(int newValue, int _)
+        public void UpdateCurrentAmmo()
         {
-            _currentAmmoText.text = newValue.ToString();
+            _currentAmmoText.text = _currentAmmo.Value.ToString();
         }
         
-        private void UpdateReserveAmmo(int newValue, int _)
+        public void UpdateReserveAmmo()
         {
-            _reserveAmmoText.text = newValue.ToString();
-        }
-
-        private void OnDestroy()
-        {
-            _currentAmmo.OnChanged -= UpdateCurrentAmmo;
-            _reserveAmmo.OnChanged -= UpdateReserveAmmo;
+            _reserveAmmoText.text = _reserveAmmo.Value.ToString();
         }
     }
 }

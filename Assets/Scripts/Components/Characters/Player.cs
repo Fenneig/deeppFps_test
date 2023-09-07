@@ -1,5 +1,6 @@
 ﻿using DEEPP.Components.Weapon;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace DEEPP.Components.Characters
 {
@@ -10,6 +11,8 @@ namespace DEEPP.Components.Characters
     [RequireComponent(typeof(WeaponComponent))]
     public class Player : MonoBehaviour, IDamageable
     {
+        [Header("Scriptable object references")]
+        [SerializeField] private UnityEvent DamageEvent;
         public MoveComponent MoveComponent { get; private set; }
         public LookComponent LookComponent { get; private set; }
         public ShootComponent ShootComponent { get; private set; }
@@ -39,6 +42,7 @@ namespace DEEPP.Components.Characters
         public void Hit(object sender, int value)
         {
             HealthComponent.ModifyHealthByDelta(-value);
+            DamageEvent.Invoke();
         }
     }
 }

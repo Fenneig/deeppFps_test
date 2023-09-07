@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DEEPP.Components.UI.GameObjectsUI;
+using DEEPP.Model.Data.ScriptableProperties;
 using UnityEngine;
 
 namespace DEEPP.Components.Environment.Target
@@ -21,7 +22,7 @@ namespace DEEPP.Components.Environment.Target
             Color targetColor = Color.white;
             foreach (var numericalColor in _numericalColors)
             {
-                if (score >= numericalColor.MinValue) targetColor = numericalColor.MatchingColor;
+                if (score >= numericalColor.Min.Value) targetColor = numericalColor.MatchingColor;
                 else break;
             }
             var pointsText = Instantiate(_pointsTextComponentPrefab, _pointsShowCanvas.transform);
@@ -32,7 +33,7 @@ namespace DEEPP.Components.Environment.Target
     [Serializable]
     public class NumericalColor
     {
-        [field: SerializeField] public int MinValue { get; private set; }
+        [field: SerializeField] public IntVariable Min { get; private set; }
         [field: SerializeField] public Color MatchingColor { get; private set; }
     }
 }

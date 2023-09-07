@@ -237,6 +237,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cf80543db614e94a8fd0426ec58181a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DamageEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1617887265204267583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -400,6 +403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _impactEffect: {fileID: 3323253375388386169, guid: 2acc9f64996300c4d9781d6dffc6fb2b, type: 3}
+  _shootEvent: {fileID: 11400000, guid: 804f29cab116a6f4d97e467685988a43, type: 2}
 --- !u!114 &8370062868261394950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,8 +416,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3c0fcf3301484fa52fddce47b03dd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hp: {fileID: 11400000, guid: 94b2ad29e678caa44937c6a20c2c7fcf, type: 2}
-  _maxHP: {fileID: 11400000, guid: 16506492cb8f02a4298ee4f860ab7a13, type: 2}
+  _hp: {fileID: 11400000, guid: b511738a998ba9e478f50068a201cd0f, type: 2}
+  _maxHPRef:
+    _useConstant: 1
+    _constantValue: 100
+    _variable: {fileID: 11400000, guid: 9116b875e5d0f6d4baadcfb4d8de108e, type: 2}
+  _damagedEvent: {fileID: 11400000, guid: 77655fc15e366b348bf159bc50abb504, type: 2}
+  _deathEvent: {fileID: 11400000, guid: f225f6a7713698e4190484879ae63bed, type: 2}
 --- !u!114 &3493656374936820854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,9 +437,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weaponSlot: {fileID: 758082842619003547}
   _currentWeapon: {fileID: 11400000, guid: c6bf370a41a888447b1590492321ee79, type: 2}
-  _currentMagazineAmmo: {fileID: 11400000, guid: a6badb31fa783fb4b9ce31aaf953d296, type: 2}
-  _reserveAmmo: {fileID: 11400000, guid: 3d0f185aedd476848945045974e7fd9a, type: 2}
-  _maxReserveAmmo: {fileID: 11400000, guid: 77c554c026ea97e4fb748d4cdff8bb25, type: 2}
+  _currentMagazineAmmo: {fileID: 11400000, guid: 75fa0ae81c4a61f40a7b8cdfe7f7499f, type: 2}
+  _reserveAmmo: {fileID: 11400000, guid: 0667b339cf07daa489a1ee3a64d2c81e, type: 2}
+  _maxReserveAmmo:
+    _useConstant: 0
+    _constantValue: 0
+    _variable: {fileID: 11400000, guid: 6d10df819e7d016409a3734ee4c6ca94, type: 2}
+  _reloadEvent: {fileID: 11400000, guid: db8105e3156e8504290e10dd9272d2c0, type: 2}
 --- !u!1 &4884887019872550910
 GameObject:
   m_ObjectHideFlags: 0

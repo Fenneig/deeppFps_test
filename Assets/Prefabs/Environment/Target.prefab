@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7935899837283736191}
   - component: {fileID: 250352560659209359}
   m_Layer: 0
-  m_Name: 100Points
+  m_Name: ExtremePoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetComponent: {fileID: 8006130692495818423}
-  _score: 100
+  _scoreMultiplier: {fileID: 11400000, guid: 3e00d8888104c4f42bbf4eb9f78e0c43, type: 2}
 --- !u!1 &2176013844300878879
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 409532452988555217}
   - component: {fileID: 1928871375430290894}
   m_Layer: 0
-  m_Name: 50Points
+  m_Name: MediumPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetComponent: {fileID: 8006130692495818423}
-  _score: 50
+  _scoreMultiplier: {fileID: 11400000, guid: 1c4520c326d0c8744a9e10afa1360e76, type: 2}
 --- !u!1 &6940581000337962586
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 7241672734340999161}
   - component: {fileID: 3097270264695308530}
   m_Layer: 0
-  m_Name: 20Points
+  m_Name: LowPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -362,7 +362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetComponent: {fileID: 8006130692495818423}
-  _score: 20
+  _scoreMultiplier: {fileID: 11400000, guid: 890b1b4510d62664ea65a172bec942cc, type: 2}
 --- !u!1 &7164802989834679616
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,7 +413,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointsShowCanvas: {fileID: 3358650962412860896}
-  _pointsTextPrefab: {fileID: 3906440135861587365, guid: 11eff73977ed7854aa8df7f36baf76a6, type: 3}
+  _pointsTextComponentPrefab: {fileID: 2695414972160563392, guid: 11eff73977ed7854aa8df7f36baf76a6, type: 3}
+  _numericalColors:
+  - <Min>k__BackingField: {fileID: 11400000, guid: 3e9c83642cf4b8340a3ab33884809af2, type: 2}
+    <MatchingColor>k__BackingField: {r: 0.2627451, g: 0.7686275, b: 0.32941177, a: 1}
+  - <Min>k__BackingField: {fileID: 11400000, guid: 8a44b539be3aea8499a62ae06a26aecc, type: 2}
+    <MatchingColor>k__BackingField: {r: 1, g: 1, b: 0.427451, a: 1}
+  - <Min>k__BackingField: {fileID: 11400000, guid: 529a8cfbc446f1d4799c3c3ec8d5b5ae, type: 2}
+    <MatchingColor>k__BackingField: {r: 1, g: 0.65882355, b: 0.29803923, a: 1}
+  - <Min>k__BackingField: {fileID: 11400000, guid: b1160c3ac1a608746a3953b8ccecd23c, type: 2}
+    <MatchingColor>k__BackingField: {r: 1, g: 0.3803922, b: 0.28627452, a: 1}
 --- !u!1 &7967921495110383268
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,7 +457,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 1.5}
-  m_SizeDelta: {x: 2, y: 2}
+  m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &3358650962412860896
 Canvas:
@@ -487,7 +496,7 @@ GameObject:
   - component: {fileID: 444232788052802717}
   - component: {fileID: 3047463650413550944}
   m_Layer: 0
-  m_Name: 70Points
+  m_Name: HighPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -593,4 +602,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetComponent: {fileID: 8006130692495818423}
-  _score: 70
+  _scoreMultiplier: {fileID: 11400000, guid: d2baa8211fca22747995a6a83678da8c, type: 2}

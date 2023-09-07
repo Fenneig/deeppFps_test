@@ -8,7 +8,7 @@ namespace DEEPP.Model
         private void Awake()
         {
             LoadHUD();
-            SetCursorSettings();
+            //SetCursorSettings();
         }
 
         private void LoadHUD()

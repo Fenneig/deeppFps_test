@@ -1,4 +1,5 @@
 ﻿using DEEPP.Components.Weapon;
+using DEEPP.Model.Data.Events;
 using DEEPP.Utils;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace DEEPP.Components.Characters
     public class ShootComponent : MonoBehaviour
     {
         [SerializeField] private GameObject _impactEffect;
+        [SerializeField] private GameEvent _shootEvent;
         private Camera _camera;
         private WeaponComponent _weaponComponent;
         private Timer _shootsPerSecondTimer = new();
@@ -28,7 +30,6 @@ namespace DEEPP.Components.Characters
         public void Init(WeaponComponent weapon)
         {
             _weaponComponent = weapon;
-            _weaponComponent.OnWeaponChanged += UpdateValues;
             
             UpdateValues();
         }
@@ -89,7 +90,7 @@ namespace DEEPP.Components.Characters
             Destroy(impactEffect, IMPACT_EFFECT_LIFE_TIME);
 
             if (!hit.transform.TryGetComponent(out IDamageable damageable)) return;
-            damageable.Hit(this, 0);
+            damageable.Hit(this, _weaponComponent.CurrentWeapon.Value.Damage);
         }
 
         private void DoEmptyEffects()
@@ -100,6 +101,7 @@ namespace DEEPP.Components.Characters
         private void DoEffects()
         {
             _weaponComponent.CurrentWeaponModel.MuzzleFireParticle.Play();
+            _shootEvent.Raise();
         }
     }
 }

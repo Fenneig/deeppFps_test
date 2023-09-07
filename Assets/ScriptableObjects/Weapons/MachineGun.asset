@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: MachineGun
   _sprite: {fileID: -613305793, guid: 240dff64d6c992c48b51cf04dc274e8c, type: 3}
   _modelPrefabPrefab: {fileID: 2068206580206610353, guid: 3193da84ee3ae6948ac111a4d64749a5, type: 3}
-  _damage: 20
+  _damage: 7
   _magazineCapacity: 30
   _reloadTime:
     _value: 1.5
